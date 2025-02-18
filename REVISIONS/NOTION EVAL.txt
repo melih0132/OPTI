@@ -1,0 +1,61 @@
+Programmation Linéaire (PL)
+
+	Objectif :
+	- Trouver les valeurs optimales de variables (ex : production d’objets) 
+	sous certaines contraintes pour maximiser ou minimiser une fonction (ex : profit, coût).
+
+	Étapes pour résoudre un problème de PL :
+	- Définir les variables :
+		Exemple : x = nombre de vélos de montagne, y = nombre de vélos de route.
+	- Écrire la fonction objectif (celle qu'on veut optimiser) :
+		Si on veut maximiser les bénéfices : Z =  profit unitaire * x + profit unitaire * y
+		Si on veut minimiser un coût : C = coût unitaire * x + coût unitaire * y
+	- Écrire les contraintes (ex : ressources limitées) :
+		Par exemple :
+			- Temps dispo dans l’atelier = 90h : 4x + 3y ≤ 90
+			- Matériaux limités = 50 unités : x + 2y ≤ 50
+	- Représenter graphiquement la solution :
+		- On trace les droites des contraintes sur un repère.
+		- L’espace réalisable est la zone où toutes les contraintes sont respectées.
+	- Déterminer la solution optimale :
+		- On teste les sommets de l’espace réalisable.
+		- On choisit celui qui maximise ou minimise la fonction objectif.
+
+Algorithme A*
+
+	Objectif :
+	- Trouver le chemin le plus court dans un graphe entre un départ et une arrivée.
+
+	Comment fonctionne A* ?
+	- Deux listes :
+		- OPEN : liste des nœuds à explorer.
+		- CLOSED : liste des nœuds déjà explorés.
+	- On utilise une fonction de coût :
+		- f(n) = g(n) + h(n)
+		- g(n) = coût pour atteindre le nœud actuel.
+		- h(n) = estimation du coût restant (heuristique).
+	- Étapes :
+		- Placer le nœud de départ dans OPEN.
+		- Explorer le nœud avec le plus petit f(n).
+		- Mettre à jour les voisins.
+		- Répéter jusqu'à atteindre le but.
+	- Vérification de l’heuristique :
+		- Elle doit être admissible si elle ne surestime jamais le coût réel.
+
+Algorithme K-Means
+
+	Objectif :
+	- Regrouper N points en K groupes (clusters).
+
+	Comment ça marche ?
+	- Initialiser K centres (choisis aléatoirement ou avec une méthode comme K-means++).
+	- Assigner chaque point au centre le plus proche.
+	- Recalculer les centres des clusters (moyenne des points assignés).
+	- Répéter jusqu'à convergence (centres qui ne bougent plus).
+
+	Comment l’appliquer en pratique ?
+	- Choisir K centres initiaux.
+	- Calculer la distance entre chaque point et les centres.
+	- Réassigner les points aux clusters les plus proches.
+	- Mettre à jour les centres des clusters.
+	- Vérifier si les centres bougent. Si oui, recommencer.

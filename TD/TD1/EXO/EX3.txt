@@ -1,0 +1,27 @@
+Données géométriques :
+- Ville A : (0, 0)
+- Ville B : (10, 0)
+- Ville C : (10, 3)
+
+Fonction de coût :
+- Le trajet entre A et P a un coût de 400 000 euros par km (le long de la route AB).
+- Le trajet entre P et C a un coût de 500 000 euros par km (en plein champ).
+
+La distance entre le point P, situé à (x, 0), et la ville C est donnée par la formule de la distance euclidienne :
+    d(P, C) = sqrt((10 - x)^2 + 9)
+
+La fonction de coût totale C(x) est donc exprimée par :
+    C(x) = 400 000 * x + 500 000 * sqrt((10 - x)^2 + 9)
+
+Objectif :
+Minimiser C(x) sous la contrainte x >= 3.
+
+Solution :
+Pour minimiser la fonction C(x), nous devons calculer sa dérivée et trouver les points où elle est nulle.
+
+La dérivée de C(x) est :
+    C'(x) = 400 000 - 500 000 * (10 - x) / sqrt((10 - x)^2 + 9)
+
+En résolvant C'(x) = 0, nous trouvons la valeur de x qui minimise le coût.
+
+Ce calcul peut être effectué numériquement en utilisant des méthodes d'optimisation.

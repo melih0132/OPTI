@@ -1,0 +1,77 @@
+CORRECTION DE L'EXERCICE 2 - PARTIE 1
+
+### 1. Formulation mathématique du problème
+Variables de décision :
+- x : nombre de lampes de type SP-100 à produire.
+- y : nombre de lampes de type SP-200 à produire.
+
+Fonction objectif :
+Maximiser le bénéfice total Z :
+Z = 15x + 22y
+
+Contraintes :
+1. Temps de fabrication (SP-200 prend deux fois plus de temps que SP-100) :
+   - x + 2y ≤ 60 (équivalent à 60 unités de temps maximum)
+
+2. Contraintes sur la chaîne d'assemblage (quantité maximale par jour) :
+   - x + y ≤ 50
+
+3. Contraintes de non-négativité :
+   - x ≥ 0, y ≥ 0
+
+### 2. Vérification des conditions de formulation d’un programme linéaire
+Les conditions suivantes sont respectées :
+- La fonction objectif est une combinaison linéaire des variables de décision.
+- Les contraintes sont des inégalités linéaires.
+- Les variables sont continues ou entières non négatives.
+
+### 3. Résolution graphique
+1. Tracer les droites d’équations :
+   - x + 2y = 60
+   - x + y = 50
+2. Identifier la zone des solutions réalisables (intersection des contraintes).
+3. Évaluer la fonction objectif aux sommets de la zone réalisable.
+
+Sommets de la zone réalisable (résolus par intersection des contraintes) :
+1. (x, y) = (0, 30) → Z = 15(0) + 22(30) = 660
+2. (x, y) = (50, 0) → Z = 15(50) + 22(0) = 750
+3. (x, y) = (40, 10) → Z = 15(40) + 22(10) = 830 (solution optimale)
+
+Solution optimale :
+- x = 40 (produire 40 lampes SP-100)
+- y = 10 (produire 10 lampes SP-200)
+- Z = 830 (bénéfice maximum)
+
+### 4. Ajout de contraintes sur les filaments
+Nouvelle contrainte :
+- Filaments disponibles :
+  - x ≤ 45 (SP-100)
+  - y ≤ 25 (SP-200)
+
+Nouvelle zone réalisable :
+Les contraintes de filaments modifient la zone réalisable. En recalculant les sommets de cette nouvelle zone, la solution optimale reste (x, y) = (40, 10) avec Z = 830.
+
+### 5. Code Python
+```python
+from scipy.optimize import linprog
+
+# Coefficients de la fonction objectif (à maximiser)
+c = [-15, -22]  # Coefficients négatifs car linprog minimise par défaut
+
+# Matrice des contraintes
+A = [
+    [1, 2],   # Temps de fabrication
+    [1, 1],   # Chaîne d'assemblage
+    [1, 0],   # Filaments SP-100
+    [0, 1]    # Filaments SP-200
+]
+b = [60, 50, 45, 25]  # Ressources disponibles
+
+# Résolution
+result = linprog(c, A_ub=A, b_ub=b, bounds=(0, None), method="simplex")
+
+# Affichage des résultats
+print("Solution optimale :")
+print(f"Nombre de lampes SP-100 (x) : {result.x[0]}")
+print(f"Nombre de lampes SP-200 (y) : {result.x[1]}")
+print(f"Bénéfice total : {-result.fun}")

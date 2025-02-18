@@ -1,0 +1,150 @@
+Programmation Linéaire (PL)
+
+Objectif :
+- Trouver les valeurs optimales de variables (par exemple, la production d’objets) sous certaines contraintes pour maximiser ou minimiser une fonction (comme le profit ou le coût).
+
+Étapes pour résoudre un problème de PL :
+1. Définir les variables :
+   - Exemple :
+     - x = nombre de vélos de montagne,
+     - y = nombre de vélos de route.
+
+2. Écrire la fonction objectif (celle qu'on veut optimiser) :
+   - Si on veut maximiser les bénéfices :
+     Z = profit unitaire x * x + profit unitaire y * y
+   - Si on veut minimiser un coût :
+     C = coût unitaire x * x + coût unitaire y * y
+
+3. Écrire les contraintes (ex : ressources limitées) :
+   - Exemple :
+     - Temps disponible dans l’atelier = 90 heures :
+       4x + 3y <= 90
+     - Matériaux limités = 50 unités :
+       x + 2y <= 50
+     - Contraintes de non négativité :
+       x >= 0, y >= 0
+
+4. Représenter graphiquement la solution :
+   - Tracer les droites des contraintes sur un repère.
+   - L’espace réalisable est la zone où toutes les contraintes sont respectées.
+
+5. Déterminer la solution optimale :
+   - Tester les sommets de l’espace réalisable.
+   - Choisir celui qui maximise ou minimise la fonction objectif.
+
+
+Algorithme A
+
+Objectif :
+- Trouver le chemin le plus court dans un graphe entre un point de départ et une arrivée.
+
+Comment fonctionne A* ?
+1. Deux listes :
+   - OPEN : Liste des nœuds à explorer.
+   - CLOSED : Liste des nœuds déjà explorés.
+
+2. Fonction de coût :
+   - f(n) = g(n) + h(n)
+     - g(n) : Coût réel pour atteindre le nœud actuel.
+     - h(n) : Estimation du coût restant (heuristique).
+
+3. Étapes :
+   - Placer le nœud de départ dans OPEN.
+   - Explorer le nœud avec le plus petit f(n).
+   - Mettre à jour les voisins.
+   - Répéter jusqu'à atteindre le but.
+
+4. Vérification de l’heuristique :
+   - Elle doit être admissible (ne jamais surestimer le coût réel).
+
+Exemple :
+- Si h(n) est la distance à vol d’oiseau, elle est admissible car elle ne surestime jamais le coût réel.
+
+
+Algorithme K-Means
+
+Objectif :
+- Regrouper N points en K groupes (clusters).
+
+Comment ça marche ?
+1. Initialiser K centres :
+   - Choisis aléatoirement ou avec une méthode comme K-means++.
+
+2. Assigner chaque point au centre le plus proche :
+   - Calculer la distance entre chaque point et les centres.
+   - Réassigner les points aux clusters les plus proches.
+
+3. Recalculer les centres des clusters :
+   - Prendre la moyenne des points assignés à chaque cluster.
+
+4. Répéter jusqu'à convergence :
+   - Les centres ne bougent plus (ou presque).
+
+Comment l’appliquer en pratique ?
+1. Choisir K centres initiaux.
+2. Calculer la distance entre chaque point et les centres.
+3. Réassigner les points aux clusters les plus proches.
+4. Mettre à jour les centres des clusters.
+5. Vérifier si les centres bougent. Si oui, recommencer.
+
+Exemple :
+- Si K = 2, on initialise deux centres.
+- On calcule la distance euclidienne entre chaque point et les centres.
+- On réassigne les points aux centres les plus proches.
+- On recalcule les centres en prenant la moyenne des points assignés.
+- On répète jusqu’à ce que les centres ne bougent plus.
+
+
+Descente de Gradient
+
+Objectif :
+- Optimiser une fonction en ajustant progressivement les paramètres pour minimiser ou maximiser une fonction objectif.
+
+Comment ça marche ?
+1. Calculer la dérivée de la fonction :
+   - La dérivée indique la direction de la pente.
+
+2. Mettre à jour les paramètres :
+   - Pour minimiser :
+     theta = theta - alpha * (dérivée de f par rapport à theta)
+   - Pour maximiser :
+     theta = theta + alpha * (dérivée de f par rapport à theta)
+   - alpha : Taux d’apprentissage (pas).
+
+3. Répéter jusqu'à convergence :
+   - Les paramètres ne bougent plus (ou presque).
+
+Exemple :
+- Si on veut maximiser Q(T) = - (T - 50)^2 + 100, on utilise l’ascente de gradient :
+  T = T + alpha * |Q'(T)|
+  où Q'(T) = -2(T - 50).
+
+
+Branch and Bound
+
+Objectif :
+- Résoudre des problèmes d’optimisation combinatoire (comme le voyageur de commerce) en explorant les solutions possibles et en éliminant les branches non prometteuses.
+
+Comment ça marche ?
+1. Générer des branches :
+   - Énumérer les solutions possibles.
+
+2. Calculer les bornes :
+   - Pour chaque branche, calculer une borne inférieure (ou supérieure) du coût.
+
+3. Éliminer les branches non prometteuses :
+   - Si une branche a une borne supérieure au coût d’une solution déjà trouvée, on l’élimine.
+
+4. Répéter jusqu'à trouver la solution optimale :
+   - Explorer les branches restantes jusqu’à identifier la meilleure solution.
+
+Exemple :
+- Pour le voyageur de commerce, on explore les chemins possibles et on élimine ceux dont le coût dépasse une borne.
+
+Résumé des méthodes
+
+- Programmation Linéaire : Optimiser une fonction sous contraintes. Étapes clés : définir variables, fonction objectif, contraintes, résolution graphique.
+- Algorithme A* : Trouver le chemin le plus court. Étapes clés : utiliser OPEN/CLOSED, fonction f(n) = g(n) + h(n), heuristique.
+- K-Means : Regrouper des points en clusters. Étapes clés : initialiser centres, assigner points, recalculer centres, convergence.
+- Descente de Gradient : Optimiser une fonction. Étapes clés : calculer dérivée, mettre à jour paramètres, convergence.
+- Branch and Bound : Résoudre des problèmes combinatoires. Étapes clés : générer branches, calculer bornes, éliminer branches non prometteuses.
