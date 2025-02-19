@@ -66,10 +66,15 @@ Objectif :
 Comment ça marche ?
 
 1. Initialisation :
-   - Choisissez K points comme centres initiaux des clusters.
+   - Choisir K points comme centres initiaux des clusters. Ces points sont souvent choisis aléatoirement parmi les données.
 
 2. Assignation :
-   - Chaque point est assigné au centre le plus proche.
+   - Chaque point est assigné au centre le plus proche. La distance entre un point et un centre est généralement calculée à l'aide de la distance euclidienne.
+   - Distance Euclidienne : La distance euclidienne entre deux points A(x1, y1) et B(x2, y2) est donnée par la formule :
+	distance(A, B) = √((x2 - x1)^2 + (y2 - y1)^2)
+   - Pour des données avec plus de deux dimensions, la formule est généralisée comme suit :
+	distance(A, B) = √((x2_1 - x1_1)^2 + (x2_2 - x1_2)^2 + ... + (x2_n - x1_n)^2)
+   où n est le nombre de dimensions.
 
 3. Recalcul :
    - Recalculez les centres des clusters en prenant la moyenne des points de chaque cluster.
