@@ -26,6 +26,7 @@ Objectif :
 4. Représenter graphiquement :
    - Tracez les lignes de vos contraintes sur un graphique. La zone où toutes les lignes se superposent est votre "espace réalisable".
    - https://www.geogebra.org/classic?lang=fr
+   - NE SURTOUT PAS FAIRE <= MAIS FAIRE = AFIN D'UTILISER LA FONCTION INTERSECTION DE GEOGEBRA.
 
 5. Déterminer la solution optimale :
    - Vérifiez les points d'intersection dans l'espace réalisable pour voir lequel optimise votre fonction objectif.
