@@ -1,150 +1,135 @@
-Programmation Linéaire (PL)
+Cours : Programmation Linéaire (PL)
 
 Objectif :
-- Trouver les valeurs optimales de variables (par exemple, la production d’objets) sous certaines contraintes pour maximiser ou minimiser une fonction (comme le profit ou le coût).
+- Trouver la meilleure solution pour une situation où plusieurs conditions doivent être respectées. Par exemple, combien de vélos fabriquer pour maximiser le profit tout en respectant des limites de temps et de ressources.
 
 Étapes pour résoudre un problème de PL :
+
 1. Définir les variables :
-   - Exemple :
-     - x = nombre de vélos de montagne,
-     - y = nombre de vélos de route.
+   - Choisissez des variables pour représenter ce que vous comptez mesurer. 
+     - Exemple : 
+       - x = nombre de vélos de montagne fabriqués,
+       - y = nombre de vélos de route fabriqués.
 
-2. Écrire la fonction objectif (celle qu'on veut optimiser) :
-   - Si on veut maximiser les bénéfices :
-     Z = profit unitaire x * x + profit unitaire y * y
-   - Si on veut minimiser un coût :
-     C = coût unitaire x * x + coût unitaire y * y
+2. Écrire la fonction objectif :
+   - C'est ce que vous voulez maximiser (comme le profit) ou minimiser (comme le coût).
+     - Pour maximiser le profit : Z = profit par vélo de montagne * x + profit par vélo de route * y
+     - Pour minimiser le coût : C = coût par vélo de montagne * x + coût par vélo de route * y
 
-3. Écrire les contraintes (ex : ressources limitées) :
-   - Exemple :
-     - Temps disponible dans l’atelier = 90 heures :
-       4x + 3y <= 90
-     - Matériaux limités = 50 unités :
-       x + 2y <= 50
-     - Contraintes de non négativité :
-       x >= 0, y >= 0
+3. Écrire les contraintes :
+   - Elles représentent les limites ou règles à respecter.
+     - Exemple :
+       - Temps d'atelier limité à 90 heures : 4x + 3y <= 90
+       - Matériaux limités à 50 unités : x + 2y <= 50
+       - On ne peut pas fabriquer un nombre négatif de vélos : x >= 0, y >= 0
 
-4. Représenter graphiquement la solution :
-   - Tracer les droites des contraintes sur un repère.
-   - L’espace réalisable est la zone où toutes les contraintes sont respectées.
+4. Représenter graphiquement :
+   - Tracez les lignes de vos contraintes sur un graphique. La zone où toutes les lignes se superposent est votre "espace réalisable".
+   - https://www.geogebra.org/classic?lang=fr
 
 5. Déterminer la solution optimale :
-   - Tester les sommets de l’espace réalisable.
-   - Choisir celui qui maximise ou minimise la fonction objectif.
+   - Vérifiez les points d'intersection dans l'espace réalisable pour voir lequel optimise votre fonction objectif.
 
-
-Algorithme A
+Algorithme A*
 
 Objectif :
-- Trouver le chemin le plus court dans un graphe entre un point de départ et une arrivée.
+- Trouver le chemin le plus court pour aller d'un point A à un point B dans un réseau.
 
-Comment fonctionne A* ?
+Comment ça fonctionne ?
+
 1. Deux listes :
-   - OPEN : Liste des nœuds à explorer.
-   - CLOSED : Liste des nœuds déjà explorés.
+   - OPEN : Nœuds à explorer.
+   - CLOSED : Nœuds déjà examinés.
 
 2. Fonction de coût :
    - f(n) = g(n) + h(n)
-     - g(n) : Coût réel pour atteindre le nœud actuel.
-     - h(n) : Estimation du coût restant (heuristique).
+     - g(n) : Le coût réel pour atteindre le nœud n.
+     - h(n) : Une estimation du coût restant pour atteindre la destination (heuristique).
 
 3. Étapes :
-   - Placer le nœud de départ dans OPEN.
-   - Explorer le nœud avec le plus petit f(n).
-   - Mettre à jour les voisins.
-   - Répéter jusqu'à atteindre le but.
+   - Commencez par mettre le point de départ dans OPEN.
+   - Choisissez le nœud avec le plus bas f(n) pour l'explorer.
+   - Mettez à jour les coûts pour les voisins de ce nœud.
+   - Répétez jusqu'à atteindre le point d'arrivée.
 
-4. Vérification de l’heuristique :
-   - Elle doit être admissible (ne jamais surestimer le coût réel).
+4. Vérification de l'heuristique :
+   - L'heuristique doit être admissible, c'est-à-dire qu'elle ne doit pas surestimer le coût réel.
 
 Exemple :
-- Si h(n) est la distance à vol d’oiseau, elle est admissible car elle ne surestime jamais le coût réel.
-
+- Si h(n) est la distance à vol d'oiseau, c'est admissible car elle est toujours inférieure ou égale au chemin réel.
 
 Algorithme K-Means
 
 Objectif :
-- Regrouper N points en K groupes (clusters).
+- Diviser un ensemble de points en groupes (clusters) où les points dans un cluster sont plus proches les uns des autres.
 
 Comment ça marche ?
-1. Initialiser K centres :
-   - Choisis aléatoirement ou avec une méthode comme K-means++.
 
-2. Assigner chaque point au centre le plus proche :
-   - Calculer la distance entre chaque point et les centres.
-   - Réassigner les points aux clusters les plus proches.
+1. Initialisation :
+   - Choisissez K points comme centres initiaux des clusters.
 
-3. Recalculer les centres des clusters :
-   - Prendre la moyenne des points assignés à chaque cluster.
+2. Assignation :
+   - Chaque point est assigné au centre le plus proche.
 
-4. Répéter jusqu'à convergence :
-   - Les centres ne bougent plus (ou presque).
+3. Recalcul :
+   - Recalculez les centres des clusters en prenant la moyenne des points de chaque cluster.
 
-Comment l’appliquer en pratique ?
-1. Choisir K centres initiaux.
-2. Calculer la distance entre chaque point et les centres.
-3. Réassigner les points aux clusters les plus proches.
-4. Mettre à jour les centres des clusters.
-5. Vérifier si les centres bougent. Si oui, recommencer.
+4. Convergence :
+   - Répétez jusqu'à ce que les centres ne bougent presque plus.
+
+Application pratique :
+- Choisissez K, initialisez les centres, assignez les points, recalculez les centres, vérifiez la convergence.
 
 Exemple :
-- Si K = 2, on initialise deux centres.
-- On calcule la distance euclidienne entre chaque point et les centres.
-- On réassigne les points aux centres les plus proches.
-- On recalcule les centres en prenant la moyenne des points assignés.
-- On répète jusqu’à ce que les centres ne bougent plus.
-
+- Pour K = 2, initialisez deux centres, assignez chaque point au centre le plus proche, recalculez les centres jusqu'à stabilisation.
 
 Descente de Gradient
 
 Objectif :
-- Optimiser une fonction en ajustant progressivement les paramètres pour minimiser ou maximiser une fonction objectif.
+- Ajuster des paramètres pour trouver le meilleur résultat d'une fonction.
 
 Comment ça marche ?
-1. Calculer la dérivée de la fonction :
-   - La dérivée indique la direction de la pente.
 
-2. Mettre à jour les paramètres :
-   - Pour minimiser :
-     theta = theta - alpha * (dérivée de f par rapport à theta)
-   - Pour maximiser :
-     theta = theta + alpha * (dérivée de f par rapport à theta)
-   - alpha : Taux d’apprentissage (pas).
+1. Calcul de la dérivée :
+   - La dérivée montre la direction où la fonction change le plus.
 
-3. Répéter jusqu'à convergence :
-   - Les paramètres ne bougent plus (ou presque).
+2. Mise à jour des paramètres :
+   - Pour minimiser : theta = theta - alpha * dérivée
+   - Pour maximiser : theta = theta + alpha * dérivée
+   - alpha est le taux d'apprentissage.
+
+3. Répétition jusqu'à la convergence :
+   - Continuez jusqu'à ce que les changements soient très petits.
 
 Exemple :
-- Si on veut maximiser Q(T) = - (T - 50)^2 + 100, on utilise l’ascente de gradient :
-  T = T + alpha * |Q'(T)|
-  où Q'(T) = -2(T - 50).
-
+- Pour maximiser Q(T) = -(T - 50)^2 + 100, on ajuste T en montant le gradient.
 
 Branch and Bound
 
 Objectif :
-- Résoudre des problèmes d’optimisation combinatoire (comme le voyageur de commerce) en explorant les solutions possibles et en éliminant les branches non prometteuses.
+- Résoudre des problèmes où il faut choisir parmi de nombreuses combinaisons possibles.
 
 Comment ça marche ?
-1. Générer des branches :
-   - Énumérer les solutions possibles.
 
-2. Calculer les bornes :
-   - Pour chaque branche, calculer une borne inférieure (ou supérieure) du coût.
+1. Génération de branches :
+   - Explorez différentes solutions possibles.
 
-3. Éliminer les branches non prometteuses :
-   - Si une branche a une borne supérieure au coût d’une solution déjà trouvée, on l’élimine.
+2. Calcul des bornes :
+   - Trouvez une estimation du coût minimal pour chaque branche.
 
-4. Répéter jusqu'à trouver la solution optimale :
-   - Explorer les branches restantes jusqu’à identifier la meilleure solution.
+3. Élimination des branches :
+   - Si une branche a un coût estimé plus élevé que la meilleure solution connue, elle est écartée.
+
+4. Répétition :
+   - Continuez jusqu'à trouver la meilleure solution.
 
 Exemple :
-- Pour le voyageur de commerce, on explore les chemins possibles et on élimine ceux dont le coût dépasse une borne.
+- Pour le problème du voyageur de commerce, on explore les chemins et élimine ceux qui dépassent une borne connue.
 
-Résumé des méthodes
+Résumé des méthodes :
 
-- Programmation Linéaire : Optimiser une fonction sous contraintes. Étapes clés : définir variables, fonction objectif, contraintes, résolution graphique.
-- Algorithme A* : Trouver le chemin le plus court. Étapes clés : utiliser OPEN/CLOSED, fonction f(n) = g(n) + h(n), heuristique.
-- K-Means : Regrouper des points en clusters. Étapes clés : initialiser centres, assigner points, recalculer centres, convergence.
-- Descente de Gradient : Optimiser une fonction. Étapes clés : calculer dérivée, mettre à jour paramètres, convergence.
-- Branch and Bound : Résoudre des problèmes combinatoires. Étapes clés : générer branches, calculer bornes, éliminer branches non prometteuses.
+Programmation Linéaire : Optimiser sous contraintes.
+Algorithme A* : Trouver le chemin le plus court.
+K-Means : Grouper des points.
+Descente de Gradient : Optimiser une fonction par ajustements.
+Branch and Bound : Éliminer les solutions non optimales pour trouver la meilleure.
